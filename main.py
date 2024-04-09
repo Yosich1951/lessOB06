@@ -14,25 +14,34 @@ import random
 
 class Hero:
     def __init__(self, name):
-        self.name = name
-        self.health = 100
-        self.attack_power = 20
+        """ Инициализатор класса с атрибутами """
+        self.name = name        # Имя героя
+        self.health = 100       # Здоровье героя
+        self.attack_power = 20  # Сила атаки героя
 
     def attack(self, other):
+        """
+        Атака на другого героя с нанесением ему урона
+        other: другой герой (объект класса Hero)
+        """
+
         other.health -= self.attack_power
         print(f"{self.name} атакует {other.name} и наносит {self.attack_power} единиц урона.")
 
     def is_alive(self):
+        """ Проверка состояния героя"""
         return self.health > 0
 
 
 class Game:
     def __init__(self):
+        """ Имена героев"""
         self.player = Hero(input("Введите имя вашего героя: "))
         self.computer = Hero("Компьютерный герой")
 
     def start(self):
         current_turn = 0  # 0 для игрока, 1 для компьютера
+        # пока здоровье позволяет
         while self.player.is_alive() and self.computer.is_alive():
             print(
                 f"\nЗдоровье {self.player.name}: {self.player.health} единиц, Здоровье {self.computer.name}: {self.computer.health} единиц")
